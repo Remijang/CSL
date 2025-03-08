@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import time
-
+from digit import get_prediction
 # Choose your webcam: 0, 1, ...
 cap = cv2.VideoCapture(0)
 
@@ -29,7 +29,8 @@ history_duration = 5.0  # time limit
 # Set frame per second to control sampling
 target_fps = 30
 frame_delay = 1.0 / target_fps
-
+frame_cnt = 0
+title_text = 'The number is ?'
 while True:
     start_time = time.time()
 
@@ -97,14 +98,22 @@ while True:
 
     # Use cv2.hconcat to concatenate frames horizontally
     combined_frame = cv2.hconcat([display, line_display])
-
+    if frame_cnt %150 == 0:
+        title_text = title_text[:14] + str(get_prediction(gray_line_display))
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    org = (50, 50)
+    fontScale = 1
+    color = (0, 0, 255)
+    thickness = 2
+    combined_frame = cv2.putText(combined_frame, title_text, org, font, 
+                   fontScale, color, thickness, cv2.LINE_AA)
     # Show the combined frame
     cv2.imshow('Combined Frames', combined_frame)
-
     # Press q to quit
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
+    frame_cnt += 1
+    
 	# Fps control
     end_time = time.time()
     process_time = end_time - start_time
