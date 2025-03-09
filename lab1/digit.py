@@ -2,7 +2,7 @@ import tensorflow as tf
 import pandas as pd
 import numpy as np
 import cv2
-model = tf.keras.models.load_model('.\digit.keras')
+model = tf.keras.models.load_model('./digit.h5')
 def img_to_tensor(img):
     # Resize the image to 28x28
     img = cv2.resize(img, (28, 28))

@@ -109,9 +109,13 @@ while True:
                    fontScale, color, thickness, cv2.LINE_AA)
     # Show the combined frame
     cv2.imshow('Combined Frames', combined_frame)
-    # Press q to quit
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+
+    # Press q to quit, c to clear line_history
+    key = cv2.waitKey(1) & 0xFF
+    if key == ord('q'):
         break
+    elif key == ord('c'):
+        line_history.clear()
     frame_cnt += 1
     
 	# Fps control
