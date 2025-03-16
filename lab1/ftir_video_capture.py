@@ -18,9 +18,9 @@ def nothing(x):
     pass
 
 cv2.namedWindow('Threshold Sliders')
-cv2.createTrackbar('r', 'Threshold Sliders', 32, 255, nothing)
-cv2.createTrackbar('g', 'Threshold Sliders', 64, 255, nothing)
-cv2.createTrackbar('b', 'Threshold Sliders', 64, 255, nothing)
+cv2.createTrackbar('r', 'Threshold Sliders', 26, 255, nothing)
+cv2.createTrackbar('g', 'Threshold Sliders', 100, 255, nothing)
+cv2.createTrackbar('b', 'Threshold Sliders', 100, 255, nothing)
 
 # Utils for drawing history
 prev_center = None
